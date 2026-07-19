@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="signal">
+  <description>Drupal coding standards for the Signal project's custom code.</description>
+
+  <!-- Only lint code we own; core and contrib are Composer-managed. -->
+  <file>web/modules/custom</file>
+  <file>web/themes/custom</file>
+
+  <!-- Show sniff codes and progress; use colour when the terminal supports it. -->
+  <arg name="colors"/>
+  <arg value="sp"/>
+
+  <!-- File types Drupal cares about. -->
+  <arg name="extensions" value="php,module,inc,install,test,profile,theme,css,info,txt,md,yml"/>
+
+  <rule ref="Drupal"/>
+  <rule ref="DrupalPractice"/>
+</ruleset>

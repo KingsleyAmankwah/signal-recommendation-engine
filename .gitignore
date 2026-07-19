@@ -1,0 +1,58 @@
+# Drupal 11 project .gitignore
+#
+# This project is Composer-managed: Drupal core, contrib modules/themes, and
+# the vendor directory are all installed by `composer install` and are NOT
+# committed. Only custom code (web/modules/custom, web/themes/custom, recipes/)
+# and the project's root manifests are tracked.
+
+# Composer dependencies.
+/vendor/
+
+# Drupal core and contrib — reinstalled by Composer.
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+
+# Composer-scaffolded files in the web root (regenerated on install).
+/web/.csslintrc
+/web/.eslintignore
+/web/.eslintrc.json
+/web/.ht.router.php
+/web/.htaccess
+/web/INSTALL.txt
+/web/README.md
+/web/autoload.php
+/web/index.php
+/web/robots.txt
+/web/update.php
+/web/example.gitignore
+/web/autoload_runtime.php
+/web/sites/default/default.settings.php
+/web/sites/default/default.services.yml
+/web/sites/*/settings.php
+/web/sites/*/services.yml
+/web/sites/development.services.yml
+/web/sites/example.settings.local.php
+/web/sites/example.sites.php
+
+# Local, environment-specific settings (DDEV writes its own include).
+/web/sites/*/settings.local.php
+
+# User-generated and private content.
+/web/sites/*/files/
+/web/sites/*/private/
+/web/sites/simpletest/
+
+# IDE / OS noise.
+.idea/
+.vscode/
+*.sublime-*
+.DS_Store
+Thumbs.db
+
+# Test and tooling artifacts.
+/phpunit.xml
+.phpunit.result.cache
+/web/sites/*/files/simpletest/
