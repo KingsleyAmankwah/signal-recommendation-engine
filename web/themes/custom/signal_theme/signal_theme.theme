@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Theme hooks and preprocessors for the Signal theme.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ *
+ * Prepares presentation-ready variables for Article nodes so the Twig
+ * templates stay free of data-massaging logic. Builds a renderable list of
+ * tag-pill components (bubbling each taxonomy term's cache metadata, plus the
+ * author's, up to the node's render cache) and exposes the author name and
+ * pre-formatted publication dates for the hero and card byline.
+ */
+function signal_theme_preprocess_node(array &$variables): void {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface || $node->bundle() !== 'article') {
+    return;
+  }
+
+  $cache = CacheableMetadata::createFromObject($node);
+
+  $pills = [];
+  foreach ($node->get('field_tags') as $item) {
+    $term = $item->entity;
+    if ($term === NULL) {
+      continue;
+    }
+    $cache->addCacheableDependency($term);
+    $pills[] = [
+      '#type' => 'component',
+      '#component' => 'signal_theme:tag-pill',
+      '#props' => [
+        'label' => $term->label(),
+        'url' => $term->toUrl()->toString(),
+        'variant' => 'accent',
+      ],
+    ];
+  }
+
+  // Bubble the author's cache tags so a display-name change refreshes output.
+  $owner = $node->getOwner();
+  if ($owner !== NULL) {
+    $cache->addCacheableDependency($owner);
+  }
+  $cache->applyTo($pills);
+
+  $date_formatter = \Drupal::service('date.formatter');
+  $created = $node->getCreatedTime();
+
+  $variables['signal_tags'] = $pills;
+  $variables['author_name'] = $owner?->getDisplayName();
+  $variables['published'] = $date_formatter->format($created, 'custom', 'M j, Y');
+  $variables['published_iso'] = $date_formatter->format($created, 'custom', 'c');
+}

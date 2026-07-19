@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Full view for an Article node.
+ *
+ * Composes the hero component from the featured image, tags and byline, then
+ * renders the body. Presentation variables (signal_tags, author_name,
+ * published, published_iso) are prepared in signal_theme_preprocess_node().
+ */
+#}
+<article{{ attributes.addClass('article-full') }}>
+  {{ title_prefix }}
+  {% embed 'signal_theme:hero' with { title: node.label, variant: 'default' } %}
+    {% block media %}{{ content.field_featured_image }}{% endblock %}
+    {% block tags %}{{ signal_tags }}{% endblock %}
+    {% block meta %}
+      {% if author_name %}
+        <span class="byline">{{ 'By @name'|t({ '@name': author_name }) }}</span>
+      {% endif %}
+      {% if published %}
+        <time class="published" datetime="{{ published_iso }}">{{ published }}</time>
+      {% endif %}
+    {% endblock %}
+  {% endembed %}
+  {{ title_suffix }}
+
+  <div class="article-full__body">
+    {{ content.body }}
+  </div>
+
+  {{ content|without('field_featured_image', 'field_tags', 'body') }}
+</article>

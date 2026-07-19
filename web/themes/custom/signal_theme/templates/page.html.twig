@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Page layout for the Signal theme.
+ *
+ * Renders the theme regions into a semantic page shell. The sidebar holds the
+ * recommendation rail; the grid collapses to a single column without it.
+ *
+ * Available variables:
+ * - page: Region render arrays keyed by region machine name.
+ */
+#}
+<div class="page-layout">
+  <header class="page-header" role="banner">
+    <div class="page-header__inner">
+      {{ page.header }}
+      {% if page.primary_menu %}
+        <nav class="page-nav" role="navigation" aria-label="{{ 'Primary navigation'|t }}">
+          {{ page.primary_menu }}
+        </nav>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="page-shell">
+    {% if page.breadcrumb %}
+      {{ page.breadcrumb }}
+    {% endif %}
+
+    {% if page.highlighted %}
+      <div class="page-highlighted">{{ page.highlighted }}</div>
+    {% endif %}
+
+    <div class="page-body{{ page.sidebar ? ' page-body--has-sidebar' }}">
+      <main class="page-main" role="main">
+        <a id="main-content" tabindex="-1" class="visually-hidden">{{ 'Main content'|t }}</a>
+        {{ page.content }}
+      </main>
+
+      {% if page.sidebar %}
+        <aside class="page-sidebar" role="complementary" aria-label="{{ 'Related content'|t }}">
+          {{ page.sidebar }}
+        </aside>
+      {% endif %}
+    </div>
+  </div>
+
+  <footer class="page-footer" role="contentinfo">
+    <div class="page-footer__inner">
+      {{ page.footer }}
+    </div>
+  </footer>
+</div>

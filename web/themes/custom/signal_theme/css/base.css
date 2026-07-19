@@ -1,0 +1,126 @@
+/**
+ * @file
+ * Base element styles and page layout for the Signal theme.
+ *
+ * Deliberately small: element defaults plus the page shell. Component-specific
+ * styling lives with each component. All box-model offsets use logical
+ * properties so the layout mirrors correctly for RTL languages.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--signal-color-bg);
+  color: var(--signal-color-text);
+  font-family: var(--signal-font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--signal-color-accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--signal-color-accent-hover);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--signal-font-heading);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+/* Page shell. */
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+}
+
+.page-header {
+  border-block-end: 1px solid var(--signal-color-border);
+  background-color: var(--signal-color-bg);
+}
+
+.page-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--signal-space-md);
+  inline-size: min(100% - 2 * var(--signal-space-lg), var(--signal-container));
+  margin-inline: auto;
+  padding-block: var(--signal-space-md);
+}
+
+.page-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--signal-space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-shell {
+  inline-size: min(100% - 2 * var(--signal-space-lg), var(--signal-container));
+  margin-inline: auto;
+  padding-block: var(--signal-space-lg);
+}
+
+.page-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--signal-space-xl);
+  align-items: start;
+}
+
+@media (min-width: 60rem) {
+  .page-body--has-sidebar {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+  }
+}
+
+.page-main {
+  min-inline-size: 0;
+}
+
+.page-sidebar {
+  min-inline-size: 0;
+}
+
+.page-footer {
+  margin-block-start: auto;
+  border-block-start: 1px solid var(--signal-color-border);
+  color: var(--signal-color-muted);
+}
+
+.page-footer__inner {
+  inline-size: min(100% - 2 * var(--signal-space-lg), var(--signal-container));
+  margin-inline: auto;
+  padding-block: var(--signal-space-lg);
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

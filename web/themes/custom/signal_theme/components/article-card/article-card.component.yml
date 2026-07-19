@@ -1,0 +1,47 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Article card
+status: stable
+description: 'A teaser card for an article — featured image, tags, title, summary and meta. Used in listings and the recommendation rail.'
+props:
+  type: object
+  required:
+    - title
+    - url
+  properties:
+    title:
+      type: string
+      title: Title
+      description: 'The article title, shown as the card heading.'
+    url:
+      type: string
+      title: URL
+      description: 'Canonical link to the article.'
+    heading_level:
+      type: string
+      title: 'Heading level'
+      description: 'Semantic level for the card title, chosen to fit the surrounding document outline.'
+      enum:
+        - h2
+        - h3
+      default: h3
+    variant:
+      type: string
+      title: Variant
+      description: 'Layout density of the card.'
+      enum:
+        - default
+        - compact
+      default: default
+slots:
+  media:
+    title: Media
+    description: 'The featured image render array.'
+  tags:
+    title: Tags
+    description: 'A list of tag-pill components.'
+  summary:
+    title: Summary
+    description: 'Trimmed body or teaser text.'
+  meta:
+    title: Meta
+    description: 'Byline, date and signals such as the view count.'

@@ -1,0 +1,58 @@
+/**
+ * @file
+ * Hero component styles.
+ */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--signal-space-lg);
+  margin-block-end: var(--signal-space-xl);
+}
+
+.hero__media {
+  overflow: hidden;
+  border-radius: var(--signal-radius-md);
+  background-color: var(--signal-color-surface-2);
+}
+
+.hero__media :is(img) {
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: cover;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--signal-space-sm);
+}
+
+.hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--signal-space-2xs);
+}
+
+.hero__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.2rem + 2.5vw, 3rem);
+  max-inline-size: var(--signal-measure);
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--signal-space-md);
+  color: var(--signal-color-muted);
+  font-size: 0.9375rem;
+}
+
+.hero--compact {
+  gap: var(--signal-space-md);
+  margin-block-end: var(--signal-space-lg);
+}
+
+.hero--compact .hero__title {
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+}

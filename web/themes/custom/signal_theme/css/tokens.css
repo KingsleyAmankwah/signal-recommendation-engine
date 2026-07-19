@@ -1,0 +1,65 @@
+/**
+ * @file
+ * Design tokens for the Signal theme.
+ *
+ * Single source of truth for colour, spacing, radius and typography. Components
+ * consume these custom properties so the whole UI shares one system and can be
+ * re-themed from one place. Dark mode is derived from the same tokens.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* Colour. */
+  --signal-color-bg: #ffffff;
+  --signal-color-surface: #f6f7f9;
+  --signal-color-surface-2: #eef0f4;
+  --signal-color-text: #1a1c22;
+  --signal-color-muted: #5c6270;
+  --signal-color-accent: #2545d3;
+  --signal-color-accent-hover: #1b34a6;
+  --signal-color-on-accent: #ffffff;
+  --signal-color-border: #e2e5ea;
+
+  /* Spacing scale. */
+  --signal-space-2xs: 0.25rem;
+  --signal-space-xs: 0.5rem;
+  --signal-space-sm: 0.75rem;
+  --signal-space-md: 1rem;
+  --signal-space-lg: 1.5rem;
+  --signal-space-xl: 2.5rem;
+  --signal-space-2xl: 4rem;
+
+  /* Radius. */
+  --signal-radius-sm: 0.375rem;
+  --signal-radius-md: 0.75rem;
+  --signal-radius-pill: 62.5rem;
+
+  /* Typography. */
+  --signal-font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --signal-font-heading: var(--signal-font-body);
+  --signal-measure: 68ch;
+
+  /* Elevation. */
+  --signal-shadow-card: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+  --signal-shadow-card-hover: 0 4px 6px rgba(16, 24, 40, 0.08), 0 10px 20px rgba(16, 24, 40, 0.12);
+
+  /* Layout. */
+  --signal-container: 72rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --signal-color-bg: #12141a;
+    --signal-color-surface: #1a1d25;
+    --signal-color-surface-2: #232733;
+    --signal-color-text: #e8eaf0;
+    --signal-color-muted: #9aa1b1;
+    --signal-color-accent: #7f96f2;
+    --signal-color-accent-hover: #9db0ff;
+    --signal-color-on-accent: #12141a;
+    --signal-color-border: #2c313d;
+    --signal-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.5);
+    --signal-shadow-card-hover: 0 4px 6px rgba(0, 0, 0, 0.45), 0 10px 20px rgba(0, 0, 0, 0.55);
+  }
+}

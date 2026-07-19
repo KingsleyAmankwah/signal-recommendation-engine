@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Teaser view for an Article node.
+ *
+ * Delegates entirely to the article-card component. Used on listings and
+ * taxonomy term pages. Presentation variables are prepared in
+ * signal_theme_preprocess_node().
+ */
+#}
+{{ title_prefix }}
+{% embed 'signal_theme:article-card' with {
+  title: node.label,
+  url: url,
+  heading_level: 'h2',
+  variant: 'default',
+} %}
+  {% block media %}{{ content.field_featured_image }}{% endblock %}
+  {% block tags %}{{ signal_tags }}{% endblock %}
+  {% block summary %}{{ content.body }}{% endblock %}
+  {% block meta %}
+    {% if author_name %}
+      <span class="byline">{{ 'By @name'|t({ '@name': author_name }) }}</span>
+    {% endif %}
+    {% if published %}
+      <time class="published" datetime="{{ published_iso }}">{{ published }}</time>
+    {% endif %}
+  {% endblock %}
+{% endembed %}
+{{ title_suffix }}

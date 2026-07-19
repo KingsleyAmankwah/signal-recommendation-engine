@@ -1,0 +1,17 @@
+name: Signal
+type: theme
+description: 'Custom Single Directory Components theme for the Signal publication. No base theme — all UI is composed from components in components/.'
+core_version_requirement: ^11
+# No base theme by design: components provide the markup, core modules provide
+# the html/page/region fallbacks, and this theme ships its own page template.
+base theme: false
+libraries:
+  - signal_theme/global
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  content: Content
+  sidebar: Sidebar
+  footer: Footer

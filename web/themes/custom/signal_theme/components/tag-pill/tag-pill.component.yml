@@ -1,0 +1,25 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Tag pill
+status: stable
+description: 'A compact, pill-shaped label for a taxonomy tag. Renders as a link when a URL is supplied, otherwise as static text.'
+props:
+  type: object
+  required:
+    - label
+  properties:
+    label:
+      type: string
+      title: Label
+      description: 'The visible tag text.'
+    url:
+      type: string
+      title: URL
+      description: 'Optional link target. When empty, the pill is non-interactive.'
+    variant:
+      type: string
+      title: Variant
+      description: 'Visual treatment of the pill.'
+      enum:
+        - default
+        - accent
+      default: default

@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Tag pill component.
+ *
+ * Renders a taxonomy tag as a pill. Becomes a link when `url` is provided,
+ * otherwise a non-interactive span.
+ */
+#}
+{% set variant = variant|default('default') %}
+{% set pill_attributes = attributes.addClass('tag-pill', 'tag-pill--' ~ variant) %}
+{% if url %}
+  <a{{ pill_attributes.setAttribute('href', url) }}>{{ label }}</a>
+{% else %}
+  <span{{ pill_attributes }}>{{ label }}</span>
+{% endif %}

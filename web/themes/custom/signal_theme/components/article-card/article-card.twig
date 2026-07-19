@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Article card component.
+ *
+ * A self-contained teaser: optional media, tags, a linked title at a
+ * caller-chosen heading level, a summary and a meta row. Slots are declared as
+ * Twig blocks so callers can fill them with either the `#slots` render property
+ * or an `{% embed %}` block override; the printed variable inside each block is
+ * the default when nothing is provided.
+ */
+#}
+{% set variant = variant|default('default') %}
+{% set heading_level = heading_level|default('h3') %}
+{% set card_attributes = attributes.addClass('article-card', 'article-card--' ~ variant) %}
+{% set media_content %}{% block media %}{{ media }}{% endblock %}{% endset %}
+{% set tags_content %}{% block tags %}{{ tags }}{% endblock %}{% endset %}
+{% set summary_content %}{% block summary %}{{ summary }}{% endblock %}{% endset %}
+{% set meta_content %}{% block meta %}{{ meta }}{% endblock %}{% endset %}
+<article{{ card_attributes }}>
+  {% if media_content|trim is not empty %}
+    <div class="article-card__media">{{ media_content }}</div>
+  {% endif %}
+  <div class="article-card__content">
+    {% if tags_content|trim is not empty %}
+      <div class="article-card__tags">{{ tags_content }}</div>
+    {% endif %}
+    <{{ heading_level }} class="article-card__title">
+      <a href="{{ url }}" class="article-card__link">{{ title }}</a>
+    </{{ heading_level }}>
+    {% if summary_content|trim is not empty %}
+      <div class="article-card__summary">{{ summary_content }}</div>
+    {% endif %}
+    {% if meta_content|trim is not empty %}
+      <div class="article-card__meta">{{ meta_content }}</div>
+    {% endif %}
+  </div>
+</article>

@@ -1,0 +1,6 @@
+global:
+  version: 1.x
+  css:
+    base:
+      css/tokens.css: {}
+      css/base.css: {}

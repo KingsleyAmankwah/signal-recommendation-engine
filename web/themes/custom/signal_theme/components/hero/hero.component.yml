@@ -1,0 +1,31 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Hero
+status: stable
+description: 'The lead banner for a full article view — featured image, tags, headline and byline.'
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      title: Title
+      description: 'The article headline, rendered as the page-level heading.'
+    variant:
+      type: string
+      title: Variant
+      description: 'Layout treatment of the hero.'
+      enum:
+        - default
+        - compact
+      default: default
+slots:
+  media:
+    title: Media
+    description: 'The featured image render array.'
+  tags:
+    title: Tags
+    description: 'A list of tag-pill components.'
+  meta:
+    title: Meta
+    description: 'Byline and publication date.'
