@@ -10,7 +10,8 @@ namespace Drupal\signal_recommendations\Recommendation;
  * The normalised sub-scores are retained alongside the final score to make the
  * ranking transparent and directly assertable in tests.
  */
-final class ScoredCandidate {
+final class ScoredCandidate
+{
 
   public function __construct(
     public readonly RecommendationCandidate $candidate,
@@ -19,5 +20,4 @@ final class ScoredCandidate {
     public readonly float $recencyScore,
     public readonly float $viewScore,
   ) {}
-
 }

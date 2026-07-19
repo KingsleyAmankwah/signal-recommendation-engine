@@ -17,14 +17,16 @@ namespace Drupal\signal_recommendations\Recommendation;
  * The class is a pure function of its inputs — no services, no database, no
  * clock — which keeps the ranking fully unit-testable.
  */
-final class RecommendationScorer implements RecommendationScorerInterface {
+final class RecommendationScorer implements RecommendationScorerInterface
+{
 
   private const SECONDS_PER_DAY = 86400;
 
   /**
    * {@inheritdoc}
    */
-  public function rank(array $candidates, ScoringContext $context): array {
+  public function rank(array $candidates, ScoringContext $context): array
+  {
     if ($candidates === []) {
       return [];
     }
@@ -59,12 +61,13 @@ final class RecommendationScorer implements RecommendationScorerInterface {
 
     // Rank by score; break ties toward newer articles, then by node ID so the
     // ordering is always deterministic.
-    usort($scored, static fn (ScoredCandidate $a, ScoredCandidate $b): int =>
+    usort(
+      $scored,
+      static fn(ScoredCandidate $a, ScoredCandidate $b): int =>
       [$b->score, $b->candidate->created, $b->candidate->nid]
-      <=> [$a->score, $a->candidate->created, $a->candidate->nid]
+        <=> [$a->score, $a->candidate->created, $a->candidate->nid]
     );
 
     return $scored;
   }
-
 }

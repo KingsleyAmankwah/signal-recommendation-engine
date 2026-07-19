@@ -9,7 +9,8 @@ use Drupal\node\NodeInterface;
 /**
  * Produces ranked article recommendations for a given article.
  */
-interface RecommendationProviderInterface {
+interface RecommendationProviderInterface
+{
 
   /**
    * Returns recommended articles related to the given node, best first.
@@ -23,5 +24,4 @@ interface RecommendationProviderInterface {
    *   Published, access-checked article nodes ordered by descending score.
    */
   public function getRecommendations(NodeInterface $node, ?int $limit = NULL): array;
-
 }

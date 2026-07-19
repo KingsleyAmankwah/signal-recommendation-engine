@@ -10,7 +10,8 @@ namespace Drupal\signal_recommendations;
  * View counts are stored independently of the node entity so that recording a
  * view is a cheap write that never invalidates the node's render cache.
  */
-interface ViewCountStorageInterface {
+interface ViewCountStorageInterface
+{
 
   /**
    * Records a single view of a node, incrementing its running total.
@@ -41,5 +42,4 @@ interface ViewCountStorageInterface {
    *   View counts keyed by node ID. Nodes with no recorded views are omitted.
    */
   public function getCounts(array $nids): array;
-
 }

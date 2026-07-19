@@ -15,7 +15,8 @@ use Drupal\Core\Database\Connection;
  * burst of traffic cannot invalidate the page cache. Reads are batched so the
  * recommendation scorer can fetch every candidate's count in one query.
  */
-final class ViewCountStorage implements ViewCountStorageInterface {
+final class ViewCountStorage implements ViewCountStorageInterface
+{
 
   /**
    * The name of the view-count table.
@@ -30,7 +31,8 @@ final class ViewCountStorage implements ViewCountStorageInterface {
   /**
    * {@inheritdoc}
    */
-  public function recordView(int $nid): void {
+  public function recordView(int $nid): void
+  {
     $now = $this->time->getRequestTime();
     $this->connection->merge(self::TABLE)
       ->keys(['nid' => $nid])
@@ -45,14 +47,16 @@ final class ViewCountStorage implements ViewCountStorageInterface {
   /**
    * {@inheritdoc}
    */
-  public function getCount(int $nid): int {
+  public function getCount(int $nid): int
+  {
     return $this->getCounts([$nid])[$nid] ?? 0;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getCounts(array $nids): array {
+  public function getCounts(array $nids): array
+  {
     if ($nids === []) {
       return [];
     }
@@ -69,5 +73,4 @@ final class ViewCountStorage implements ViewCountStorageInterface {
 
     return $counts;
   }
-
 }

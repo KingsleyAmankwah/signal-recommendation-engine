@@ -11,7 +11,8 @@ namespace Drupal\signal_recommendations\Recommendation;
  * article's tag count and the current time) so the scorer stays a pure
  * function of its inputs.
  */
-final class ScoringContext {
+final class ScoringContext
+{
 
   /**
    * Constructs a ScoringContext value object.
@@ -37,5 +38,4 @@ final class ScoringContext {
     public readonly float $viewWeight,
     public readonly float $recencyDecayDays,
   ) {}
-
 }

@@ -7,7 +7,8 @@ namespace Drupal\signal_recommendations\Recommendation;
 /**
  * Ranks candidate articles for recommendation.
  */
-interface RecommendationScorerInterface {
+interface RecommendationScorerInterface
+{
 
   /**
    * Scores and ranks candidates, best first.
@@ -21,5 +22,4 @@ interface RecommendationScorerInterface {
    *   The candidates wrapped with their scores, sorted by score descending.
    */
   public function rank(array $candidates, ScoringContext $context): array;
-
 }

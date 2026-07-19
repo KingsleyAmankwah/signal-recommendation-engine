@@ -20,7 +20,8 @@ use Drupal\signal_recommendations\ViewCountStorageInterface;
  * and creation time. View counts are then fetched in one batch and the pure
  * scorer ranks the result. Only nodes the current user may view are returned.
  */
-final class RecommendationProvider implements RecommendationProviderInterface {
+final class RecommendationProvider implements RecommendationProviderInterface
+{
 
   public function __construct(
     private readonly EntityTypeManagerInterface $entityTypeManager,
@@ -34,7 +35,8 @@ final class RecommendationProvider implements RecommendationProviderInterface {
   /**
    * {@inheritdoc}
    */
-  public function getRecommendations(NodeInterface $node, ?int $limit = NULL): array {
+  public function getRecommendations(NodeInterface $node, ?int $limit = NULL): array
+  {
     $source_tags = array_column($node->get('field_tags')->getValue(), 'target_id');
     if ($source_tags === []) {
       return [];
@@ -49,7 +51,7 @@ final class RecommendationProvider implements RecommendationProviderInterface {
       return [];
     }
 
-    $nids = array_map(static fn (object $row): int => (int) $row->nid, $rows);
+    $nids = array_map(static fn(object $row): int => (int) $row->nid, $rows);
     $view_counts = $this->viewCountStorage->getCounts($nids);
 
     $candidates = [];
@@ -88,7 +90,8 @@ final class RecommendationProvider implements RecommendationProviderInterface {
    * @return object[]
    *   Rows with nid, shared (tag count) and created (timestamp).
    */
-  private function queryCandidates(array $source_tags, int $source_nid, int $min_shared): array {
+  private function queryCandidates(array $source_tags, int $source_nid, int $min_shared): array
+  {
     $query = $this->database->select('node__field_tags', 'ft');
     $query->addField('ft', 'entity_id', 'nid');
     $query->addExpression('COUNT(ft.field_tags_target_id)', 'shared');
@@ -116,9 +119,10 @@ final class RecommendationProvider implements RecommendationProviderInterface {
    * @return \Drupal\node\NodeInterface[]
    *   Viewable nodes in score order.
    */
-  private function loadRanked(array $scored, int $limit): array {
+  private function loadRanked(array $scored, int $limit): array
+  {
     $ordered_nids = array_map(
-      static fn (ScoredCandidate $item): int => $item->candidate->nid,
+      static fn(ScoredCandidate $item): int => $item->candidate->nid,
       $scored,
     );
     $nodes = $this->entityTypeManager->getStorage('node')->loadMultiple($ordered_nids);
@@ -136,5 +140,4 @@ final class RecommendationProvider implements RecommendationProviderInterface {
 
     return $result;
   }
-
 }

@@ -10,7 +10,8 @@ namespace Drupal\signal_recommendations\Recommendation;
  * Decoupling the scorer's inputs from Drupal entities keeps the scoring logic
  * pure and unit-testable: the scorer never loads a node or hits the database.
  */
-final class RecommendationCandidate {
+final class RecommendationCandidate
+{
 
   /**
    * Constructs a RecommendationCandidate value object.
@@ -30,5 +31,4 @@ final class RecommendationCandidate {
     public readonly int $created,
     public readonly int $viewCount,
   ) {}
-
 }

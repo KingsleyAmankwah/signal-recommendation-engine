@@ -49,7 +49,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
     ),
   ],
 )]
-final class RecommendationBlock extends BlockBase implements ContainerFactoryPluginInterface {
+final class RecommendationBlock extends BlockBase implements ContainerFactoryPluginInterface
+{
 
   /**
    * Constructs a RecommendationBlock.
@@ -84,7 +85,8 @@ final class RecommendationBlock extends BlockBase implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): static {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): static
+  {
     return new static(
       $configuration,
       $plugin_id,
@@ -99,7 +101,8 @@ final class RecommendationBlock extends BlockBase implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    */
-  public function defaultConfiguration(): array {
+  public function defaultConfiguration(): array
+  {
     return [
       'heading' => 'Related articles',
       'items_limit' => 0,
@@ -109,7 +112,8 @@ final class RecommendationBlock extends BlockBase implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    */
-  public function blockForm($form, FormStateInterface $form_state): array {
+  public function blockForm($form, FormStateInterface $form_state): array
+  {
     $form['heading'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Heading'),
@@ -129,7 +133,8 @@ final class RecommendationBlock extends BlockBase implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    */
-  public function blockSubmit($form, FormStateInterface $form_state): void {
+  public function blockSubmit($form, FormStateInterface $form_state): void
+  {
     $this->configuration['heading'] = $form_state->getValue('heading');
     $this->configuration['items_limit'] = (int) $form_state->getValue('items_limit');
   }
@@ -137,7 +142,8 @@ final class RecommendationBlock extends BlockBase implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    */
-  public function build(): array {
+  public function build(): array
+  {
     $cache = new CacheableMetadata();
     // The rail varies per article and by the viewer's node-view access, and is
     // refreshed on a timer so the volatile view-count signal never triggers an
@@ -186,11 +192,11 @@ final class RecommendationBlock extends BlockBase implements ContainerFactoryPlu
    * @return \Drupal\node\NodeInterface[]
    *   Recommended nodes, or an empty array on failure.
    */
-  private function getRecommendations(NodeInterface $node, ?int $limit): array {
+  private function getRecommendations(NodeInterface $node, ?int $limit): array
+  {
     try {
       return $this->recommendationProvider->getRecommendations($node, $limit);
-    }
-    catch (\Throwable $e) {
+    } catch (\Throwable $e) {
       $this->logger->error('Unable to build recommendations for node @nid: @message', [
         '@nid' => $node->id(),
         '@message' => $e->getMessage(),
@@ -198,5 +204,4 @@ final class RecommendationBlock extends BlockBase implements ContainerFactoryPlu
       return [];
     }
   }
-
 }
