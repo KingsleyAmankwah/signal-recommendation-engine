@@ -1,10 +1,7 @@
 # Signal Recommendation Engine
 
 A custom-themed blog/publication site whose "related content" rail is powered by
-a **bespoke recommendation engine** — no contrib recommendation module. Built to
-demonstrate senior-level Drupal 11 practice: Single Directory Components (SDC),
-custom plugins with dependency injection, cache-metadata correctness, and a
-tested scoring algorithm.
+a **bespoke recommendation engine** — no contrib recommendation module. Drupal 11 practice: Single Directory Components (SDC), custom plugins with dependency injection, cache-metadata correctness, and a tested scoring algorithm.
 
 ## What it does
 
