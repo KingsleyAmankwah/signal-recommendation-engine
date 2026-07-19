@@ -1,0 +1,15 @@
+signal_recommendations.track:
+  path: '/signal-recommendations/track/{node}'
+  defaults:
+    _controller: 'Drupal\signal_recommendations\Controller\ViewTrackController::track'
+  methods: [POST]
+  requirements:
+    # Only count views of nodes the requester may actually see, and require a
+    # CSRF header token so the endpoint cannot be driven cross-site.
+    _entity_access: 'node.view'
+    _csrf_request_header_token: 'TRUE'
+  options:
+    no_cache: true
+    parameters:
+      node:
+        type: entity:node

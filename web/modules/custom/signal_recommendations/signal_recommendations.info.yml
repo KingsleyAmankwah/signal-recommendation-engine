@@ -1,0 +1,8 @@
+name: 'Signal Recommendations'
+type: module
+description: 'Content recommendation engine: cache-safe view tracking and a related-content block that scores articles by shared tags, recency and popularity.'
+package: Signal
+core_version_requirement: ^11
+dependencies:
+  - drupal:node
+  - drupal:taxonomy

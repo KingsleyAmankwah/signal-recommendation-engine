@@ -1,0 +1,6 @@
+services:
+  signal_recommendations.view_count_storage:
+    class: Drupal\signal_recommendations\ViewCountStorage
+    arguments:
+      - '@database'
+      - '@datetime.time'

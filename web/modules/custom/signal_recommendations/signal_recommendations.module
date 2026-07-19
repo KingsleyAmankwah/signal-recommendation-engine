@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for Signal Recommendations.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node entities.
+ *
+ * Attaches the view-tracking beacon to full Article views. The beacon records
+ * the view client-side via an async POST, which is the only way to count views
+ * that were served from Drupal's page cache (where no PHP runs for the page).
+ */
+function signal_recommendations_node_view(array &$build, NodeInterface $node, EntityViewDisplayInterface $display, string $view_mode): void {
+  if ($view_mode !== 'full' || $node->bundle() !== 'article') {
+    return;
+  }
+
+  $build['#attached']['library'][] = 'signal_recommendations/view_tracker';
+  $build['#attached']['drupalSettings']['signalRecommendations']['nid'] = (int) $node->id();
+}

@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Install and schema hooks for Signal Recommendations.
+ */
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_schema().
+ */
+function signal_recommendations_schema(): array {
+  $schema['signal_recommendations_view_count'] = [
+    'description' => 'Per-node article view counts, stored separately from the node entity so recording a view never invalidates the node cache.',
+    'fields' => [
+      'nid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The {node}.nid whose views are counted.',
+      ],
+      'count' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Total number of recorded views.',
+      ],
+      'last_view' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Unix timestamp of the most recent recorded view.',
+      ],
+    ],
+    'primary key' => ['nid'],
+    'indexes' => [
+      'count' => ['count'],
+    ],
+  ];
+
+  return $schema;
+}
