@@ -1,0 +1,14 @@
+# Scoring weights and parameters for the recommendation engine.
+# Weights are relative; they need not sum to 1. Relevance (shared tags)
+# dominates, recency breaks ties toward fresher content, and popularity is a
+# gentle nudge so a viral article cannot outrank a clearly more relevant one.
+weight_tags: 0.6
+weight_recency: 0.25
+weight_views: 0.15
+# Recency decay constant in days: the age at which the recency signal falls to
+# ~37% (1/e) of its peak.
+recency_decay_days: 30.0
+# Maximum number of recommendations returned.
+max_results: 4
+# Minimum number of tags a candidate must share with the source article.
+min_shared_tags: 1

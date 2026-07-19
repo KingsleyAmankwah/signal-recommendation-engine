@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace Drupal\Tests\signal_recommendations\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\signal_recommendations\ViewCountStorage;
 use Drupal\signal_recommendations\ViewCountStorageInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests recording and reading article view counts.
- *
- * @group signal_recommendations
- * @covers \Drupal\signal_recommendations\ViewCountStorage
  */
+#[Group('signal_recommendations')]
+#[CoversClass(ViewCountStorage::class)]
 #[RunTestsInSeparateProcesses]
 final class ViewCountStorageTest extends KernelTestBase {
 

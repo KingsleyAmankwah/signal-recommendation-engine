@@ -1,0 +1,22 @@
+signal_recommendations.settings:
+  type: config_object
+  label: 'Signal Recommendations settings'
+  mapping:
+    weight_tags:
+      type: float
+      label: 'Weight: shared tags'
+    weight_recency:
+      type: float
+      label: 'Weight: recency'
+    weight_views:
+      type: float
+      label: 'Weight: popularity (views)'
+    recency_decay_days:
+      type: float
+      label: 'Recency decay constant (days)'
+    max_results:
+      type: integer
+      label: 'Maximum recommendations returned'
+    min_shared_tags:
+      type: integer
+      label: 'Minimum shared tags required'

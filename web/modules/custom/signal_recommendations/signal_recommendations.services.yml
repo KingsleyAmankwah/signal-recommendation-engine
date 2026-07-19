@@ -4,3 +4,16 @@ services:
     arguments:
       - '@database'
       - '@datetime.time'
+
+  signal_recommendations.scorer:
+    class: Drupal\signal_recommendations\Recommendation\RecommendationScorer
+
+  signal_recommendations.provider:
+    class: Drupal\signal_recommendations\Recommendation\RecommendationProvider
+    arguments:
+      - '@entity_type.manager'
+      - '@database'
+      - '@signal_recommendations.view_count_storage'
+      - '@signal_recommendations.scorer'
+      - '@config.factory'
+      - '@datetime.time'
