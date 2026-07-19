@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Recommendation rail component.
+ *
+ * A titled column of related-article cards. Renders nothing when the items
+ * slot is empty, so an article with no related content shows no rail.
+ */
+#}
+{% set items_content %}{% block items %}{{ items }}{% endblock %}{% endset %}
+{% if items_content|trim is not empty %}
+  <section{{ attributes.addClass('recommendation-rail') }} aria-label="{{ heading }}">
+    <h2 class="recommendation-rail__heading">{{ heading }}</h2>
+    <div class="recommendation-rail__items">
+      {{ items_content }}
+    </div>
+  </section>
+{% endif %}

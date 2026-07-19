@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Recommendation rail component styles.
+ */
+
+.recommendation-rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--signal-space-md);
+}
+
+.recommendation-rail__heading {
+  margin: 0;
+  padding-block-end: var(--signal-space-xs);
+  border-block-end: 2px solid var(--signal-color-accent);
+  font-size: 1.125rem;
+}
+
+.recommendation-rail__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--signal-space-md);
+}

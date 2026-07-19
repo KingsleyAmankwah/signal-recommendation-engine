@@ -1,0 +1,17 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Recommendation rail
+status: stable
+description: 'A titled list of related-article cards, shown alongside a full article.'
+props:
+  type: object
+  required:
+    - heading
+  properties:
+    heading:
+      type: string
+      title: Heading
+      description: 'The rail''s visible title, for example "Related articles".'
+slots:
+  items:
+    title: Items
+    description: 'The rendered article-card teasers that make up the rail.'
