@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Signal">
+  <circle cx="11" cy="29" r="4" fill="#2545d3"/>
+  <path d="M11 21a8 8 0 0 1 8 8" fill="none" stroke="#2545d3" stroke-width="3" stroke-linecap="round"/>
+  <path d="M11 13a16 16 0 0 1 16 16" fill="none" stroke="#2545d3" stroke-width="3" stroke-linecap="round"/>
+</svg>
