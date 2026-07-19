@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Article
+type: article
+description: 'A published article with a body, tags, a featured image, and an author. Related articles are surfaced by the Signal recommendation engine.'
+help: 'Give the article a clear title, a featured image, and one or more tags. Tags drive the related-content recommendations shown alongside the article.'
+new_revision: true
+preview_mode: 1
+display_submitted: true

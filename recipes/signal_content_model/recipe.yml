@@ -1,0 +1,15 @@
+name: 'Signal content model'
+description: 'Creates the Article content type and Tags taxonomy that power the Signal publication and its recommendation engine.'
+type: 'Content type'
+install:
+  - node
+  - taxonomy
+  - image
+  - text
+config:
+  # Create everything shipped in this recipe's config/ directory. Existing
+  # config (e.g. the Tags vocabulary on a site installed from the standard
+  # profile) is left untouched, so the recipe is safe to re-apply.
+  import:
+    node:
+      - core.entity_view_mode.node.teaser
