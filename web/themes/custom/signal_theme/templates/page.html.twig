@@ -45,9 +45,11 @@
     </div>
   </div>
 
-  <footer class="page-footer" role="contentinfo">
-    <div class="page-footer__inner">
-      {{ page.footer }}
-    </div>
-  </footer>
+  {% if page.footer %}
+    <footer class="page-footer" role="contentinfo">
+      <div class="page-footer__inner">
+        {{ page.footer }}
+      </div>
+    </footer>
+  {% endif %}
 </div>

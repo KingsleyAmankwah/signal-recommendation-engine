@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Branding block for the Signal theme.
+ *
+ * Structures the logo, site name and slogan with dedicated classes so the
+ * slogan can sit neatly beneath the name instead of trailing after it as
+ * unstyled text.
+ *
+ * Available variables:
+ * - site_logo: Logo for the site.
+ * - site_name: Name for the site.
+ * - site_slogan: Slogan for the site.
+ */
+#}
+{% extends "block.html.twig" %}
+{% block content %}
+  <div class="site-branding">
+    {% if site_logo %}
+      <a href="{{ path('<front>') }}" rel="home" class="site-branding__logo">
+        <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high" />
+      </a>
+    {% endif %}
+    {% if site_name or site_slogan %}
+      <div class="site-branding__text">
+        {% if site_name %}
+          <a href="{{ path('<front>') }}" rel="home" class="site-branding__name">{{ site_name }}</a>
+        {% endif %}
+        {% if site_slogan %}
+          <div class="site-branding__slogan">{{ site_slogan }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
