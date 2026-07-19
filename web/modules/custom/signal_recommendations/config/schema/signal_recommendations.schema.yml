@@ -20,3 +20,6 @@ signal_recommendations.settings:
     min_shared_tags:
       type: integer
       label: 'Minimum shared tags required'
+    cache_max_age:
+      type: integer
+      label: 'Recommendation cache lifetime in seconds'

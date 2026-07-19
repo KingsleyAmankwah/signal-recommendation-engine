@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - signal_recommendations
+  theme:
+    - signal_theme
+id: signal_recommendations_rail
+theme: signal_theme
+region: sidebar
+weight: 0
+provider: null
+plugin: signal_recommendations_rail
+settings:
+  id: signal_recommendations_rail
+  label: 'Related articles'
+  label_display: '0'
+  provider: signal_recommendations
+  heading: 'Related articles'
+  items_limit: 0
+  context_mapping:
+    node: '@node.node_route_context:node'
+visibility: {  }

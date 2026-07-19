@@ -12,3 +12,8 @@ recency_decay_days: 30.0
 max_results: 4
 # Minimum number of tags a candidate must share with the source article.
 min_shared_tags: 1
+# How long the rendered rail may be cached, in seconds. Because popularity
+# (view count) drifts continuously, the rail is refreshed on this timer rather
+# than invalidated on every view, which would defeat the page cache. Discrete
+# changes (edited/added articles) still invalidate immediately via cache tags.
+cache_max_age: 3600

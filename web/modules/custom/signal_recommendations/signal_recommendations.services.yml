@@ -1,4 +1,9 @@
 services:
+  logger.channel.signal_recommendations:
+    parent: logger.channel_base
+    arguments:
+      - 'signal_recommendations'
+
   signal_recommendations.view_count_storage:
     class: Drupal\signal_recommendations\ViewCountStorage
     arguments:
