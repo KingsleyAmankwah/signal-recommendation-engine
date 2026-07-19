@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.field_featured_image
     - field.field.node.article.field_tags
+    - image.style.medium
     - node.type.article
   module:
     - image
@@ -48,5 +49,4 @@ content:
     third_party_settings: {  }
     weight: 100
     region: content
-hidden:
-  langcode: true
+hidden: {  }

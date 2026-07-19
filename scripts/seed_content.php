@@ -170,6 +170,7 @@ foreach ($articles as $data) {
     'title' => $data['title'],
     'uid' => 1,
     'status' => 1,
+    'promote' => 1,
     'created' => $now - ($data['days_ago'] * 86400),
     'body' => ['value' => '<p>' . $data['body'] . '</p>', 'format' => 'basic_html'],
     'field_tags' => $tids,
