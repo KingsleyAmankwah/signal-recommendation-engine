@@ -124,3 +124,26 @@ img {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* Responsive card grid for article listings (front page, etc.). */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--signal-space-lg);
+}
+
+@media (min-width: 40rem) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card-grid__item {
+  min-inline-size: 0;
+}

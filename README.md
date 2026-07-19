@@ -6,6 +6,27 @@ demonstrate senior-level Drupal 11 practice: Single Directory Components (SDC),
 custom plugins with dependency injection, cache-metadata correctness, and a
 tested scoring algorithm.
 
+## What it does
+
+Signal is a small publication. Editors write **Articles** — a title, body,
+featured image, and one or more **tags**. Readers browse a grid of articles on
+the front page and read them on a clean, component-built page.
+
+The headline feature is what happens *beside* each article: a **"Related
+articles" rail** that recommends other posts the reader is likely to want next.
+Those recommendations are chosen by a custom engine that scores every candidate
+article on three signals and shows the best few:
+
+1. **Shared tags** — how much the topics overlap (the strongest signal).
+2. **Recency** — newer articles are favoured, with the effect fading over time.
+3. **Popularity** — how often an article has actually been read, counted in a
+   way that keeps working even when pages are served from cache.
+
+Everything that could reasonably change — the weight of each signal, how fast
+recency fades, how many articles to show — is configuration, not code. And the
+rail is cached precisely: it refreshes the moment a relevant article is edited,
+added, or unpublished, without throwing away the rest of the page's cache.
+
 ## What this project demonstrates
 
 - A clean **content model** (Article + Tags taxonomy) shipped as an idempotent,

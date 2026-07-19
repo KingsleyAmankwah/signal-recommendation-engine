@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Frontpage rows as a responsive card grid.
+ *
+ * Wraps the unformatted rows in a grid container so the article cards lay out
+ * in columns (1 / 2 / 3 across breakpoints) instead of stacking full-width.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<div class="card-grid">
+  {% for row in rows %}
+    {%
+      set row_classes = [
+        default_row_class ? 'views-row',
+        'card-grid__item',
+      ]
+    %}
+    <div{{ row.attributes.addClass(row_classes) }}>
+      {{- row.content -}}
+    </div>
+  {% endfor %}
+</div>
