@@ -1,4 +1,6 @@
-# Signal — Drupal 11 Publication with a Plugin-Based Recommendation Engine
+# Signal Recommendation Engine
+
+> Repository: `signal-recommendation-engine`
 
 A custom-themed blog/publication site whose "related content" rail is powered by
 a **bespoke recommendation engine** — no contrib recommendation module. Built to
