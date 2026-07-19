@@ -36,13 +36,16 @@
   --signal-radius-pill: 62.5rem;
 
   /* Typography. */
-  --signal-font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --signal-font-body:
+    system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --signal-font-heading: var(--signal-font-body);
   --signal-measure: 68ch;
 
   /* Elevation. */
-  --signal-shadow-card: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
-  --signal-shadow-card-hover: 0 4px 6px rgba(16, 24, 40, 0.08), 0 10px 20px rgba(16, 24, 40, 0.12);
+  --signal-shadow-card:
+    0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+  --signal-shadow-card-hover:
+    0 4px 6px rgba(16, 24, 40, 0.08), 0 10px 20px rgba(16, 24, 40, 0.12);
 
   /* Layout. */
   --signal-container: 72rem;
@@ -59,7 +62,9 @@
     --signal-color-accent-hover: #9db0ff;
     --signal-color-on-accent: #12141a;
     --signal-color-border: #2c313d;
-    --signal-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.5);
-    --signal-shadow-card-hover: 0 4px 6px rgba(0, 0, 0, 0.45), 0 10px 20px rgba(0, 0, 0, 0.55);
+    --signal-shadow-card:
+      0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.5);
+    --signal-shadow-card-hover:
+      0 4px 6px rgba(0, 0, 0, 0.45), 0 10px 20px rgba(0, 0, 0, 0.55);
   }
 }
