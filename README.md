@@ -185,10 +185,42 @@ The `RecommendationBlock` carries deliberately precise cache metadata:
 | Which article / who is viewing        | Cache **contexts** `route`, `user.node_grants:view` | Per-article and access-filtered results.                                                     |
 | View counts (high churn)              | Bounded **max-age**                                 | Refresh on a timer instead of invalidating on every view, which would defeat the page cache. |
 
-View counts are stored in a **dedicated table**, not on the node, so recording a
-view is a cheap upsert that never touches the node's cache tags. They are
-recorded via an async JavaScript beacon — the only way to count views served
-from Drupal's page cache, where no PHP runs for the page.
+**Why cache at all:** building the rail is expensive — query for candidates
+sharing tags, read their view counts, score them, then load and render each
+teaser. Drupal renders it once, stores the result, and reuses it. The metadata
+above answers the only hard question: _when should the cached rail be rebuilt?_
+
+**The deliberate split — discrete vs. continuous.** Notice the view count is
+**not** a cache tag. Discrete changes (an article edited, added, or unpublished)
+invalidate instantly and precisely through cache tags. Continuously drifting data
+(view counts, changing on every page load) is handled by the max-age instead. If
+view counts invalidated the cache, every single view would purge it and the rail
+would be recomputed constantly — so popularity is **eventually consistent**: the
+count is stored immediately, but its effect on the ordering only appears once the
+max-age window elapses.
+
+A concrete timeline:
+
+```text
+10:00  First visit to /node/3  → cache MISS → rail built and stored
+                                  tags: node:3, node:5, node:7, node_list:article
+                                  contexts: route, user.node_grants:view; max-age: 3600
+10:05  Visit /node/3 again      → cache HIT  → served instantly, zero queries
+10:10  Article 5 is edited      → node:5 purged → node/3's rail invalidated
+10:11  Visit /node/3            → cache MISS → rebuilt, reflecting the edit
+10:20  Readers view article 7   → counts rise in the DB immediately…
+                                  …but the rail ordering does not change yet
+11:11  Max-age (1h) elapsed     → rail rebuilt, now folding in article 7's views
+```
+
+This metadata **bubbles up** from the block to the page's cache entry, so
+Drupal's page-level caches know the whole page depends on `node:5` too. It is
+also why the view counter is a JavaScript beacon: the anonymous page cache serves
+static HTML with **no PHP running**, so the only way to count a cached-page view
+is client-side.
+
+View counts themselves are stored in a **dedicated table**, not on the node, so
+recording a view is a cheap upsert that never touches the node's cache tags.
 
 ## Module & theme layout
 
