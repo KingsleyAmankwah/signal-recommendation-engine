@@ -1,7 +1,5 @@
 # Signal Recommendation Engine
 
-> Repository: `signal-recommendation-engine`
-
 A custom-themed blog/publication site whose "related content" rail is powered by
 a **bespoke recommendation engine** — no contrib recommendation module. Built to
 demonstrate senior-level Drupal 11 practice: Single Directory Components (SDC),
@@ -14,7 +12,7 @@ Signal is a small publication. Editors write **Articles** — a title, body,
 featured image, and one or more **tags**. Readers browse a grid of articles on
 the front page and read them on a clean, component-built page.
 
-The headline feature is what happens *beside* each article: a **"Related
+The headline feature is what happens _beside_ each article: a **"Related
 articles" rail** that recommends other posts the reader is likely to want next.
 Those recommendations are chosen by a custom engine that scores every candidate
 article on three signals and shows the best few:
@@ -100,12 +98,12 @@ scorer, and returns only published nodes the current user may view.
 
 The `RecommendationBlock` carries deliberately precise cache metadata:
 
-| Signal | Mechanism | Why |
-| --- | --- | --- |
-| Current / recommended articles change | Cache **tags** `node:{id}` | Invalidate the exact rails affected, nothing else. |
-| A new article is published | Cache **tag** `node_list:article` | Let new content enter the rail. |
-| Which article / who is viewing | Cache **contexts** `route`, `user.node_grants:view` | Per-article and access-filtered results. |
-| View counts (high churn) | Bounded **max-age** | Refresh on a timer instead of invalidating on every view, which would defeat the page cache. |
+| Signal                                | Mechanism                                           | Why                                                                                          |
+| ------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Current / recommended articles change | Cache **tags** `node:{id}`                          | Invalidate the exact rails affected, nothing else.                                           |
+| A new article is published            | Cache **tag** `node_list:article`                   | Let new content enter the rail.                                                              |
+| Which article / who is viewing        | Cache **contexts** `route`, `user.node_grants:view` | Per-article and access-filtered results.                                                     |
+| View counts (high churn)              | Bounded **max-age**                                 | Refresh on a timer instead of invalidating on every view, which would defeat the page cache. |
 
 View counts are stored in a **dedicated table**, not on the node, so recording a
 view is a cheap upsert that never touches the node's cache tags. They are
